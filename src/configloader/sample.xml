@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sample>
+        <atemplate template="true">{TEMPLATE_VAR} is a template value</atemplate>
+
+        <integervalue type="int">0</integervalue>
+
+        <winsize type="tuple(int)">(1024, 768)</winsize>
+
+        <set>
+            <one>And it goes...</one>
+            <two>...more deep</two>
+        </set>
+    </sample>
+</config>
