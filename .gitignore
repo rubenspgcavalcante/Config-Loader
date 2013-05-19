@@ -2,3 +2,5 @@
 *.pyc
 .idea/*
 build/*
+ConfigLoader.egg-info/*
+dist/*

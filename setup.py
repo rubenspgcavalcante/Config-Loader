@@ -19,17 +19,19 @@ __date__ = "08/05/13 19:18"
 __licence__ = "GPLv3"
 __email__ = "rubenspgcavalcante@gmail.com"
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='ConfigLoader',
-    version='1.0',
+    version='0.3',
     license="GPLv3",
     description='A xml parser to a config structure',
     author='Rubens Pinheiro Gonçalves Cavalcante',
     author_email='rubenspgcavalcante@gmail.com',
     url="https://github.com/rubenspgcavalcante/Config-Loader",
+    download_url="https://github.com/rubenspgcavalcante/Config-Loader/archive/master.zip",
     package_dir={'configloader': 'src/configloader'},
     package_data={'configloader': ['sample.xml']},
     packages=['configloader', 'configloader.core'],
+    install_requires=["lxml"]
 )
