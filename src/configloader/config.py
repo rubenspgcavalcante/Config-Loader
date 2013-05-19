@@ -20,14 +20,17 @@ __licence__ = "GPLv3"
 __email__ = "rubenspgcavalcante@gmail.com"
 
 from core.xml_configuration_parser import XMLConfigurationParser
-from core import singleton
+from core.singleton import singleton
 
 @singleton
 class Config(object):
     def __init__(self, configFile="config.xml", templates=None):
         self.configFile = configFile
         self._parser = XMLConfigurationParser()
-        self._attr = self._parser.parse(configFile, **templates)
+        if templates is None:
+            self._attr = self._parser.parse(configFile)
+        else:
+            self._attr = self._parser.parse(configFile, **templates)
         self._bck = self._attr
 
     @property

@@ -35,16 +35,14 @@ class DictStruct:
 
     def __str__(self):
         formated = "[Struct instance ; Object id {id}]\n".format(id=id(self))
-        formated += "=" * 80
         formated += self._prettyString()
-        formated += "=" * 80
         return formated
 
     def _prettyString(self, ident=0):
         buffer = ""
         for i in dir(self):
             if re.match(r"__[a-z]+__", i) is None and i != "_prettyString":
-                if self.__dict__[i].__class__.__name__ == 'Struct':
+                if self.__dict__[i].__class__.__name__ == self.__class__.__name__:
                     buffer += "\n" + ("\t" * ident) + i + ":\n"
                     buffer += self.__dict__[i]._prettyString(ident+1)
 

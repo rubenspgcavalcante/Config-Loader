@@ -19,10 +19,10 @@ __date__ = "08/05/13 19:18"
 __licence__ = "GPLv3"
 __email__ = "rubenspgcavalcante@gmail.com"
 
-def singleton(cls):
+def singleton(cls, *args, **kwargs):
     instances = {}
-    def getInstance():
+    def getInstance(*args, **kwargs):
         if cls not in instances:
-            instances[cls] = cls()
+            instances[cls] = cls(*args, **kwargs)
         return instances[cls]
     return getInstance

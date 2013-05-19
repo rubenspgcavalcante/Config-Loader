@@ -26,6 +26,9 @@ from xml.etree.ElementTree import Element
 from types_parser import TypeParser
 from dict_struct import DictStruct
 
+class XMLTemplateError(StandardError):
+    def __init__(self, msg):
+        StandardError.__init__(self, msg)
 
 class XMLConfigurationParser(object):
     def __init__(self):
@@ -114,7 +117,11 @@ class XMLConfigurationParser(object):
 
                 if 'template' in element.attrib:
                     if element.attrib['template'] == 'true' and template_args != None:
-                        obj = element.text.format(**template_args)
+                        try:
+                            obj = element.text.format(**template_args)
+
+                        except KeyError as e:
+                            raise XMLTemplateError("Template parse error. Missing argument %s" % e.args)
 
                 result[element.tag] = obj
         return result
