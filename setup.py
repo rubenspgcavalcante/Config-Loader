@@ -24,9 +24,11 @@ from distutils.core import setup
 setup(
     name='ConfigLoader',
     version='1.0',
+    licence="GPLv3",
     description='A xml parser to a config structure',
     author='Rubens Pinheiro Gonçalves Cavalcante',
     author_email='rubenspgcavalcante@gmail.com',
+    url="https://github.com/rubenspgcavalcante/Config-Loader",
     package_dir={'configloader': 'src/configloader'},
     package_data={'configloader': ['sample.xml']},
     packages=['configloader'],
