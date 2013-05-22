@@ -42,9 +42,9 @@ You load the file with your config instance
 from configloader.config import Config
 conf = Config("myconfig.xml", templates={"TEMPLATE_VAR": "This value"})
 
-print conf.attr.atemplate #This value is from a template
-print conf.attr.set.one #And it goes...
-print conf.attr.set.two #...more deep
+print conf.attr.sample.atemplate #This value is from a template
+print conf.attr.sample.set.one #And it goes...
+print conf.attr.sample.set.two #...more deep
 
 ```
 You can change the values too
