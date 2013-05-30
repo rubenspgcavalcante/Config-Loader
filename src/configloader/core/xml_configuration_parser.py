@@ -40,28 +40,25 @@ class XMLConfigurationParser(object):
         else:
             return ""
 
-    def parseTupleTag(self, element):
+    def parseTupleOrListTag(self, element, structure, type):
         """
-        Parses a tag of type 'tuple' and analyse the content type
-        of this tuple
+        Parses a tag of type 'tuple' or 'list' and analyse the content type
+        of this structure
         e.g.:
-            <tag type="tuple(int)">(20, 10)</tag>
-            <tag type="tuple(float)">(20.3, 10.1)</tag>
-            <tag type="tuple(str)">(hello, world)</tag>
+            <tag type="tuple(int)">"20", "10"</tag>
+            <tag type="tuple(float)">"20.3", "10.1"</tag>
+            <tag type="list(str)">"hello", "world"</tag>
 
         @type element: Element
         @param element: The element tree which contains the tag
-        @rtype : tuple
+        @rtype : tuple|list
         """
-        attributeType = element.attrib["type"]
-        if attributeType == "tuple(int)":
-            return self.typeParser.tuple(element.text, 'int')
+        if structure == "tuple":
+            return self.typeParser.tuple(element.text, type)
 
-        elif attributeType == "tuple(float)":
-            return self.typeParser.tuple(element.text, 'float')
+        if structure == "list":
+            return self.typeParser.list(element.text, type)
 
-        elif attributeType == "tuple(str)":
-            return self.typeParser.tuple(element.text, 'str')
 
     def processType(self, element):
         """
@@ -74,14 +71,18 @@ class XMLConfigurationParser(object):
         @type element: Element
         @param element: The tag to covert
         """
-        if re.match(r'(tuple)', element.attrib["type"]):
-            processed = self.parseTupleTag(element)
+        match = re.match(r'(?P<struct>tuple|list)\((?P<type>.*)\)', element.attrib["type"])
+        if match:
+            processed = self.parseTupleOrListTag(element, match.group('struct'), match.group('type') )
 
         elif element.attrib["type"] == "int":
             processed = self.typeParser.int(element.text)
 
         elif element.attrib["type"] == "float":
             processed = self.typeParser.float(element.text)
+
+        elif element.attrib["type"] == "bool":
+            processed = self.typeParser.bool(element.text)
 
         else:
             processed = element.text

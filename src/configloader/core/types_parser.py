@@ -35,7 +35,19 @@ class TypeParser(object):
         @param type: The type of tuple to convert, e.g: int
         @rtype : tuple
         """
-        resList = re.sub(r'\(*\)*\ *', r"", value).split(",")
+        return tuple(self.list(value, type))
+
+    def list(self, value, type):
+        """
+        Parse a string value into a list of the given type
+
+        @type value: str
+        @param value: The string value to convert
+        @type type: str
+        @param type: The type of list to convert, e.g: int
+        @rtype : list
+        """
+        resList = re.findall(r'"(.*?)"', value)
         for key, value in enumerate(resList):
             if type == "int":
                 resList[key] = int(value)
@@ -46,7 +58,7 @@ class TypeParser(object):
             elif type == "str":
                 resList[key] = str(value)
 
-        return tuple(resList)
+        return resList
 
     def int(self, value):
         """
@@ -57,6 +69,16 @@ class TypeParser(object):
         @rtype: int
         """
         return int(value.replace(" ", ""))
+
+    def bool(self, value):
+        """
+        Convert a string into a boolean
+
+        @type value: str
+        @param value: The string to convert e.g: "True"
+        @rtype: bool
+        """
+        return value.replace(" ", "").upper() == "TRUE"
 
     def float(self, value):
         """

@@ -5,7 +5,13 @@
 
         <integervalue type="int">0</integervalue>
 
-        <winsize type="tuple(int)">(1024, 768)</winsize>
+        <winsize type="tuple(int)">"1024", "768"</winsize>
+
+        <otherparams type="list(str)">
+            "Hello",
+            "beautifully",
+            "world!"
+        </otherparams>
 
         <set>
             <one>And it goes...</one>

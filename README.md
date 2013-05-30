@@ -19,11 +19,17 @@ Make a config file like this:
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <sample>
-        <atemplate template="true">{TEMPLATE_VAR} is from a template</atemplate>
+        <atemplate template="true">{TEMPLATE_VAR} is a template value</atemplate>
 
         <integervalue type="int">0</integervalue>
 
-        <winsize type="tuple(int)">(1024, 768)</winsize>
+        <winsize type="tuple(int)">"1024", "768"</winsize>
+
+        <otherparams type="list(str)">
+            "Hello",
+            "beautifully",
+            "world!"
+        </otherparams>
 
         <set>
             <one>And it goes...</one>
@@ -35,7 +41,9 @@ Make a config file like this:
 All values are interpreted as strings, unless if is declared the type:
 *   int
 *   float
+*   bool
 *   tuple(type)
+*   list(type)
 
 You load the file with your config instance
 ```python
