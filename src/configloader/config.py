@@ -14,6 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
+import cgi
+from threading import Lock
+
 __author__ = "Rubens Pinheiro Gonçalves Cavalcante"
 __date__ = "08/05/13 19:18"
 __licence__ = "GPLv3"
@@ -26,6 +29,7 @@ from core.singleton import singleton
 class Config(object):
     def __init__(self, configFile="config.xml", templates=None):
         self.configFile = configFile
+        self._LOCK = Lock()
         self._parser = XMLConfigurationParser()
         if templates is None:
             self._attr = self._parser.parse(configFile)
@@ -39,7 +43,14 @@ class Config(object):
 
     @attr.setter
     def attr(self, value):
-        self._attr = value
+        value = cgi.escape(value)
+        with self._LOCK:
+            self._attr = value
+
+    @attr.getter
+    def attr(self, value):
+        with self._LOCK:
+            return self._attr
 
     @property
     def bck(self):
