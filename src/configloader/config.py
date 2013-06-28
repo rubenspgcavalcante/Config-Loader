@@ -27,7 +27,17 @@ from core.singleton import singleton
 
 @singleton
 class Config(object):
+    """
+    The config class. Loads the config in the xml file passed
+    and dynamically builds a structure based on this.
+    """
     def __init__(self, configFile="config.xml", templates=None):
+        """
+        :type configFile: str
+        :param configFile: The path to the config file
+        :type templates: dict
+        :param templates: The key values to substitute the templates in the config file
+        """
         self.configFile = configFile
         self._LOCK = Lock()
         self._parser = XMLConfigurationParser()
@@ -48,7 +58,7 @@ class Config(object):
             self._attr = value
 
     @attr.getter
-    def attr(self, value):
+    def attr(self):
         with self._LOCK:
             return self._attr
 

@@ -49,9 +49,9 @@ class XMLConfigurationParser(object):
             <tag type="tuple(float)">"20.3", "10.1"</tag>
             <tag type="list(str)">"hello", "world"</tag>
 
-        @type element: Element
-        @param element: The element tree which contains the tag
-        @rtype : tuple|list
+        :type element: Element
+        :param element: The element tree which contains the tag
+        :rtype : tuple|list
         """
         if structure == "tuple":
             return self.typeParser.tuple(element.text, type)
@@ -68,8 +68,8 @@ class XMLConfigurationParser(object):
             <tag type="int">20</tag>
             <tag type="float">1.9</tag>
 
-        @type element: Element
-        @param element: The tag to covert
+        :type element: Element
+        :param element: The tag to covert
         """
         match = re.match(r'(?P<struct>tuple|list)\((?P<type>.*)\)', element.attrib["type"])
         if match:
@@ -93,12 +93,12 @@ class XMLConfigurationParser(object):
         """
         Parse a XML etree object into a dict, recursively
 
-        @type parent_element: Element
-        @param parent_element: The parent element to serve as the wrapper of the dict
+        :type parent_element: Element
+        :param parent_element: The parent element to serve as the wrapper of the dict
 
-        @type template_args: dict
-        @param template_args: Template arguments to process the tags with the 'template' attribute
-        @returns The parsed dict
+        :type template_args: dict
+        :param template_args: Template arguments to process the tags with the 'template' attribute
+        :returns The parsed dict
         """
         result = dict()
         for element in parent_element:
@@ -131,13 +131,13 @@ class XMLConfigurationParser(object):
         """
         Parse a file and loads it into a structured format
 
-        @type filePath: str
-        @param filePath: The path to the XML configuration file
+        :type filePath: str
+        :param filePath: The path to the XML configuration file
 
-        @type variables: dict
-        @param variables: The template variables to substitute in the xml file
+        :type variables: dict
+        :param variables: The template variables to substitute in the xml file
 
-        @rtype : DictStruct
+        :rtype : DictStruct
         """
         xml = None
         with open(filePath, 'rt') as confFile:

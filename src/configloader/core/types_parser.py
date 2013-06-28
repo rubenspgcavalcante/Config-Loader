@@ -29,11 +29,11 @@ class TypeParser(object):
         """
         Parse a string value into a tuple of the given type
 
-        @type value: str
-        @param value: The string value to convert
-        @type type: str
-        @param type: The type of tuple to convert, e.g: int
-        @rtype : tuple
+        :type value: str
+        :param value: The string value to convert
+        :type type: str
+        :param type: The type of tuple to convert, e.g: int
+        :rtype : tuple
         """
         return tuple(self.list(value, type))
 
@@ -41,11 +41,11 @@ class TypeParser(object):
         """
         Parse a string value into a list of the given type
 
-        @type value: str
-        @param value: The string value to convert
-        @type type: str
-        @param type: The type of list to convert, e.g: int
-        @rtype : list
+        :type value: str
+        :param value: The string value to convert
+        :type type: str
+        :param type: The type of list to convert, e.g: int
+        :rtype : list
         """
         resList = re.findall(r'"(.*?)"', value)
         for key, value in enumerate(resList):
@@ -64,9 +64,9 @@ class TypeParser(object):
         """
         Convert a string into a integer
 
-        @type value: str
-        @param value: The string to convert e.g: "10"
-        @rtype: int
+        :type value: str
+        :param value: The string to convert e.g: "10"
+        :rtype: int
         """
         return int(value.replace(" ", ""))
 
@@ -74,17 +74,17 @@ class TypeParser(object):
         """
         Convert a string into a boolean
 
-        @type value: str
-        @param value: The string to convert e.g: "True"
-        @rtype: bool
+        :type value: str
+        :param value: The string to convert e.g: "True"
+        :rtype: bool
         """
         return value.replace(" ", "").upper() == "TRUE"
 
     def float(self, value):
         """
         Convert a string into a float
-        @type value: str
-        @param value: The string to convert e.g: "10"
-        @rtype: float
+        :type value: str
+        :param value: The string to convert e.g: "10"
+        :rtype: float
         """
         return float(value.replace(" ", ""))

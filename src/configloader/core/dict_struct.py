@@ -25,8 +25,8 @@ class DictStruct:
         """
         Transforms a simple dict object into a structured object
 
-        @type entries: dict
-        @param entries: The dict to be transformed into struct
+        :type entries: dict
+        :param entries: The dict to be transformed into struct
         """
         for key, value in entries.items():
             if type(value) == dict:
