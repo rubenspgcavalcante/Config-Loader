@@ -50,7 +50,7 @@ You load the file with your config instance
 from configloader.config import Config
 conf = Config("myconfig.xml", templates={"TEMPLATE_VAR": "This value"})
 
-print conf.attr.sample.atemplate #This value is from a template
+print conf.attr.sample.atemplate #This value is a template value
 print conf.attr.sample.set.one #And it goes...
 print conf.attr.sample.set.two #...more deep
 
