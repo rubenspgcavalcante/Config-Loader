@@ -14,17 +14,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
+from configloader.core.dict_struct import DictStruct
+from configloader.core.types_parser import TypeParser
+import re
+from xml.etree import ElementTree
+from xml.etree.ElementTree import Element
 
 __author__ = "Rubens Pinheiro Gonçalves Cavalcante"
 __date__ = "08/05/13 19:18"
 __licence__ = "GPLv3"
 __email__ = "rubenspgcavalcante@gmail.com"
-
-import re
-from xml.etree import ElementTree
-from xml.etree.ElementTree import Element
-from types_parser import TypeParser
-from dict_struct import DictStruct
 
 class XMLTemplateError(StandardError):
     def __init__(self, msg):

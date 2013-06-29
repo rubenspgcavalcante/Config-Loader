@@ -23,7 +23,7 @@ from setuptools import setup
 
 setup(
     name='ConfigLoader',
-    version='0.3',
+    version='0.4',
     license="GPLv3",
     description='A xml parser to a config structure',
     author='Rubens Pinheiro Gonçalves Cavalcante',
